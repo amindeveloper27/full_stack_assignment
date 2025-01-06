@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CgSoftwareDownload } from "react-icons/cg";
+import "../app/globals.css";
 
 const AddMovies = () => {
   const [title, setTitle] = useState("");
