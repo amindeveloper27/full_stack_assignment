@@ -183,6 +183,7 @@ const AddMovies = () => {
           </button>
           <button
             type="submit"
+            onClick={handleSubmit}
             className="px-6 py-2 bg-[#2BD17E] w-[167px] text-white rounded-md hover:bg-green-600"
           >
             {type === 'new' && 'Submit'}

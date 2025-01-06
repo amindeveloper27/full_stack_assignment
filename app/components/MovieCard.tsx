@@ -18,7 +18,7 @@ const MovieCard = ({ data }: any) => {
           alt="Movie Poster"
         /> */}
         <div className={`flex flex-col mt-4`}>
-          <label className={` text-[20px] text-[#ffffff]`}>{data.title}</label>
+          <label className={` text-[20px] text-[#ffffff] capitalize`}>{data.title}</label>
           <label className={` text-[14px] text-[#ffffff]`}>
             {data.publishing_year}
           </label>
