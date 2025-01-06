@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { montserrat } from "../layout";
 
 export const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +26,7 @@ export const LoginScreen = () => {
     <>
       <div className="w-full max-w-md  ">
         <h1
-          className={`mb-6 text-[56px] lg:text-[64px] leading-[80px] font-semibold text-center text-[#FFFFFF] ${montserrat.className}`}
+          className={`mb-6 text-[56px] lg:text-[64px] leading-[80px] font-semibold text-center text-[#FFFFFF] `}
         >
           Sign in
         </h1>
@@ -57,7 +56,7 @@ export const LoginScreen = () => {
             <label className="flex items-center text-white">
               <input
                 type="checkbox"
-                className={`${montserrat.className} bg-[#224957] text-[14px]  appearance-none checked:bg-[#2BD17E] w-4 h-4 mr-2 rounded  checked:content-['✔']`}
+                className={` bg-[#224957] text-[14px]  appearance-none checked:bg-[#2BD17E] w-4 h-4 mr-2 rounded  checked:content-['✔']`}
               />
               Remember me
               <style jsx>{`

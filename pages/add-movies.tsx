@@ -1,4 +1,3 @@
-import { montserrat } from "@/app/layout";
 import React, { useState } from "react";
 import { CgSoftwareDownload } from "react-icons/cg";
 
@@ -44,7 +43,7 @@ const AddMovies = () => {
     <div className="min-h-screen flex justify-center lg:items-center bg-[#062a3e]">
       <div className="lg:pb-10 flex flex-col w-[100%] mx-[6rem] my-[2rem] lg:my-[4rem]">
         <h1
-          className={`text-2xl lg:text-[48px] text-white font-semibold mb-[2rem] ${montserrat.className}`}
+          className={`text-2xl lg:text-[48px] text-white font-semibold mb-[2rem] `}
         >
           Create a new movie
         </h1>
@@ -60,7 +59,7 @@ const AddMovies = () => {
               <div className="text-center flex flex-col justify-center items-center text-white">
                 <CgSoftwareDownload className={`text-[24px]`} />
                 <p
-                  className={`text-[#FFFFFF] text-[14px] ${montserrat.className}`}
+                  className={`text-[#FFFFFF] text-[14px] `}
                 >
                   Drop an image here
                 </p>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { montserrat } from '../layout';
 
 const Pagination = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -12,7 +11,7 @@ const Pagination = () => {
           disabled={currentPage === 1}
           className={`${
             currentPage === 1 ? "text-gray-400" : "text-white"
-          } hover:text-green-400 text-[16px] ${montserrat.className} font-bold`}
+          } hover:text-green-400 text-[16px]  font-bold`}
         >
           Prev
         </button>
@@ -24,7 +23,7 @@ const Pagination = () => {
               currentPage === index + 1
                 ? "bg-[#2BD17E] text-white"
                 : "bg-[#092C39] text-white"
-            } rounded-md font-bold ${montserrat.className}`}
+            } rounded-md font-bold `}
           >
             {index + 1}
           </button>
@@ -36,7 +35,7 @@ const Pagination = () => {
           disabled={currentPage === totalPages}
           className={`${
             currentPage === totalPages ? "text-gray-400" : "text-white"
-          } hover:text-green-400 text-[16px] ${montserrat.className} font-bold`}
+          } hover:text-green-400 text-[16px]  font-bold`}
         >
           Next
         </button>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { montserrat } from '../layout'
 import { IoAddCircleOutline } from 'react-icons/io5'
 import { MdLogout } from 'react-icons/md'
 import MovieCard from './MovieCard'
@@ -19,7 +18,7 @@ export const MovieListing = () => {
     <>
     <div className={`flex justify-between  my-[4rem] px-4 lg:px-[8rem]`} >
         <div className={`flex items-center text-[#ffffff] mx-4`} >
-            <h2 className={`${montserrat.className} text-[32px] lg:text-[48px] leading-[56px] font-semibold`}>My movies</h2>
+            <h2 className={` text-[32px] lg:text-[48px] leading-[56px] font-semibold`}>My movies</h2>
             <IoAddCircleOutline
             onClick={navigateToCreateMovie}
             className={`text-[32px] ml-4 cursor-pointer`} />
@@ -30,27 +29,12 @@ export const MovieListing = () => {
         </div>
     </div>
         <div className={`grid lg:grid-cols-5 lg:gap-6 gap-2 ml-[1rem]  grid-cols-2 lg:px-[8rem] `} >
-            <div className={`col-span-1 w-[180px] lg:w-[282px] `} >
+            <div
+            onClick={navigateToCreateMovie}
+            className={`col-span-1 w-[180px] lg:w-[282px] `} >
             <MovieCard/>
             </div>
-            <div className={`col-span-1 w-[180px] lg:w-[282px] `} >
-            <MovieCard/>
-            </div>
-            <div className={`col-span-1 w-[180px] lg:w-[282px] `} >
-            <MovieCard/>
-            </div>
-            <div className={`col-span-1 w-[180px] lg:w-[282px] `} >
-            <MovieCard/>
-            </div>
-            <div className={`col-span-1 w-[180px] lg:w-[282px] `} >
-            <MovieCard/>
-            </div>
-            <div className={`col-span-1 w-[180px] lg:w-[282px] `} >
-            <MovieCard/>
-            </div>
-            <div className={`col-span-1 w-[180px] lg:w-[282px] `} >
-            <MovieCard/>
-            </div>
+           
         </div>
         <Pagination/>
     </>
