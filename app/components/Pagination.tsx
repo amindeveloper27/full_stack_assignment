@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
-const Pagination = () => {
-    const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 2;
+const Pagination = ({setCurrentPage, currentPage, totalPages}: any) => {
+    
   return (
    <>
-   <div className="flex justify-center items-center space-x-4 pb-10">
+   <div className="flex justify-center items-center space-x-4 pb-10 mt-4">
         <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          onClick={() => setCurrentPage((prev: any) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
           className={`${
             currentPage === 1 ? "text-gray-400" : "text-white"
@@ -30,7 +29,7 @@ const Pagination = () => {
         ))}
         <button
           onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            setCurrentPage((prev: any) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
           className={`${

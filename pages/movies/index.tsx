@@ -1,14 +1,47 @@
 import { LoginScreen } from "@/app/components/LoginScreen";
 import { MovieListing } from "@/app/components/MovieListing";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../app/globals.css";
 // import { montserrat } from "@/app/layout";
 import { Router, useRouter } from "next/router";
+import axios from "axios";
 
 const index = () => {
   const [movies, setMovies] = useState([]);
   const router = useRouter();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
+  const [token, setToken] = useState<string | null>(null);
+  
+    useEffect(() => {
+      if (typeof window !== 'undefined') {
+        const storedToken = localStorage.getItem('token');
+        setToken(storedToken);
+      }
+    }, []);
+  
+    useEffect(() => {
+      const fetchMovies = async () => {
+        if (!token) return;
+  
+        try {
+          const response = await axios.get('https://movie-api-nine-orcin.vercel.app/api/movie', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setMovies(response.data.data);
+        } catch (err) {
+          setError('Failed to load movies.');
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchMovies();
+    }, [token]);
 
   const addMovie = () => {
     router.push('/add-movies');
@@ -25,7 +58,10 @@ const index = () => {
         </div>
         }
         {movies.length>0 && 
+        <div className={`w-full`}>
+
          <MovieListing/>
+        </div>
         } 
         <img
           src="/images/Vectors.svg"
@@ -36,8 +72,17 @@ const index = () => {
           className={`flex lg:hidden absolute bottom-0 w-full `}
         />
       </div>
+      
     </>
   );
 };
 
 export default index;
+function setError(arg0: string) {
+  throw new Error("Function not implemented.");
+}
+
+function setLoading(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
+

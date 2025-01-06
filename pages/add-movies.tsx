@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CgSoftwareDownload } from "react-icons/cg";
 import "../app/globals.css";
 import { useRouter } from "next/router";
@@ -9,7 +9,17 @@ const AddMovies = () => {
   const [image, setImage]: any= useState(null);
 
   const router = useRouter();
-    const { type } = router.query;
+    const { type, item } = router.query;
+
+    useEffect(() => {
+        if (item) {
+          const movieData = JSON.parse(item as string);
+    
+          setTitle(movieData.title || "");
+          setYear(movieData.publishing_year || "");
+        }
+      }, [item]);
+    
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]; 
@@ -32,10 +42,52 @@ const AddMovies = () => {
   };
   
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ title, year, image });
+  
+    if (!title || !year ) {
+      alert("Please fill all fields and upload an image.");
+      return;
+    }
+  
+    try {
+        const storedToken = localStorage.getItem("token");
+        const movieData = type === 'edit' ? JSON.parse(item as string) : '';
+        const payload = {
+            title,
+            publishing_year: year,
+          };
+          const apiUrl =
+          type === "new"
+            ? "https://movie-api-nine-orcin.vercel.app/api/movie"
+            : `https://movie-api-nine-orcin.vercel.app/api/movie/${movieData.id}`;
+    
+        const method = type === "new" ? "POST" : "PUT";
+      const response = await fetch(apiUrl, {
+        method: method,
+        body: JSON.stringify(payload),
+        headers: {
+            Authorization: `Bearer ${storedToken}`,
+            "Content-Type": "application/json",
+          },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to submit movie details.");
+      }
+  
+      const data = await response.json();
+      console.log("Movie added successfully:", data);
+      router.push('my-movies')
+    //   alert("Movie added successfully!");
+  
+      handleCancel();
+    } catch (error) {
+      console.error("Error submitting movie:", error);
+      alert("Error submitting movie. Please try again.");
+    }
   };
+  
 
   const handleCancel = () => {
     setTitle("");

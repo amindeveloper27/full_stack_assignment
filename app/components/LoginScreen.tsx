@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Loader from "./Loader";
 import { useRouter } from 'next/navigation'
+import { Montserrat } from "next/font/google";
+import axios from "axios";
 
 
 export const LoginScreen = () => {
@@ -12,7 +14,7 @@ export const LoginScreen = () => {
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     setEmailError("");
     setPasswordError("");
@@ -25,7 +27,29 @@ export const LoginScreen = () => {
     }
     if (emailRegex.test(email) && password.length >= 6) {
       console.log("Form submitted:", { email, password });
-        router.push('/my-movies');
+      try {
+        const response = await axios.post(
+          "https://movie-api-nine-orcin.vercel.app/api/signin",
+          {
+            email,
+            password,
+          }
+        );
+  
+        if (response.status === 200) {
+          console.log("Login successful:", response.data);
+          localStorage.setItem('token', response.data.token)
+          router.push("/my-movies");
+        } else {
+          console.error("Login failed:", response.data);
+          
+        }
+      } catch (error: any) {
+        console.error("Error during sign-in:", error.response.data.message);
+        setPasswordError(error.response.data.message)
+        
+      }
+       
     }
   };
   return (
