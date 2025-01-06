@@ -10,6 +10,12 @@ export const MovieListing = () => {
     const router = useRouter();
     
     
+      const navigateToEditMovie = () => {
+        router.push({
+            pathname: '/add-movies',
+            query: { type: 'edit' }
+        });
+    }
       const navigateToCreateMovie = () => {
         router.push({
             pathname: '/add-movies',
@@ -39,7 +45,7 @@ export const MovieListing = () => {
     </div>
         <div className={`grid lg:grid-cols-5 lg:gap-6 gap-2 ml-[1rem]  grid-cols-2 lg:px-[8rem] `} >
             <div
-            onClick={navigateToCreateMovie}
+            onClick={navigateToEditMovie}
             className={`col-span-1 w-[180px] lg:w-[282px] `} >
             <MovieCard/>
             </div>
