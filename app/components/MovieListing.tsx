@@ -11,7 +11,14 @@ export const MovieListing = () => {
     
     
       const navigateToCreateMovie = () => {
-        router.push('/add-movies');
+        router.push({
+            pathname: '/add-movies',
+            query: { type: 'new' }
+        });
+    }
+    const logout = () => {
+          router.push('/');
+
       }
     
   return (
@@ -23,7 +30,9 @@ export const MovieListing = () => {
             onClick={navigateToCreateMovie}
             className={`text-[32px] ml-4 cursor-pointer`} />
         </div>
-        <div className={`flex items-center`} >
+        <div
+        onClick={logout}
+        className={`flex items-center cursor-pointer`} >
             <label className={`text-[#ffffff] lg:flex hidden text-[16px] font-bold`} >Logout</label>
             <MdLogout className={`text-[#ffffff] text-[32px] ml-6`} />
         </div>

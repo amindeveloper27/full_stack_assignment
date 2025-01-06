@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { CgSoftwareDownload } from "react-icons/cg";
 import "../app/globals.css";
+import { useRouter } from "next/router";
 
 const AddMovies = () => {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
   const [image, setImage]: any= useState(null);
+
+  const router = useRouter();
+    const { type } = router.query;
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]; 
@@ -46,7 +50,12 @@ const AddMovies = () => {
         <h1
           className={`text-2xl lg:text-[48px] text-white font-semibold mb-[2rem] `}
         >
-          Create a new movie
+          {type === 'new' && 
+          'Create a new movie'
+          }
+          {type === 'edit' && 
+          'Edit'
+          }
         </h1>
         <div className="flex flex-col-reverse lg:flex-row lg:mt-[4rem] w-full">
           <div className="relative flex items-center justify-center h-[372px] lg:w-[473px] mt-[2rem] lg:mt-[0]  bg-[#224957] border-2 border-dashed border-gray-400 rounded-lg mb-6 lg:mb-0">
@@ -106,7 +115,8 @@ const AddMovies = () => {
                 type="submit"
                 className="px-6 py-2 bg-[#2BD17E] w-[167px] text-white rounded-md hover:bg-green-600"
               >
-                Submit
+                {type === 'new' && 'Submit'}
+                {type === 'edit' && 'Update'}
               </button>
             </div>
           </form>
@@ -123,7 +133,8 @@ const AddMovies = () => {
             type="submit"
             className="px-6 py-2 bg-[#2BD17E] w-[167px] text-white rounded-md hover:bg-green-600"
           >
-            Submit
+            {type === 'new' && 'Submit'}
+            {type === 'edit' && 'Update'}
           </button>
         </div>
       </div>
