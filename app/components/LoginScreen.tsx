@@ -62,9 +62,9 @@ export const LoginScreen = () => {
               <style jsx>{`
                 input:checked::after {
                   content: "✔";
-                  position: absolute;
-                  top: 2px;
-                  left: 1.2px;
+                  position: relative;
+                  top: -3px;
+                  left: 2.2px;
                   font-size: 12px;
                   color: white;
                 }
